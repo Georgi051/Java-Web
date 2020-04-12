@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+    />
+</head>
+<style>
+    body {
+        background-image: url('https://wallpaperaccess.com/full/800099.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: #464646;
+    }
+</style>
+<body>
+<main class="main">
+    <nav class="navbar navbar-expand-lg navbar-background">
+        <a class="nav-link text-white active h5" href="/">Home</a>
+        <div class="collapse navbar-collapse d-flex justify-content-end">
+            <ul class="navbar-nav row">
+                <li class="nav-item col-md-4">
+                    <a class="nav-link text-white active font-weight-bold"
+                       href="/create"
+                    >Upload Car</a
+                    >
+                </li>
+                <li class="nav-item col-md-4">
+                    <a class="nav-link text-white active font-weight-bold" href="/all"
+                    >All Cars</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <h2 class="text-center text-white">Upload Car</h2>
+        <form class="mx-auto w-15" method="post">
+            <div class="row">
+                <div class="col col-md-3"></div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <div class="label-holder d-flex justify-content-center">
+                            <label class="text-center text-white font-weight-bold" for="brand">Brand
+                                <input type="text" class="form-control" name="brand" id="brand" placeholder="Brand">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <div class="label-holder d-flex justify-content-center">
+                            <label class="text-center text-white font-weight-bold" for="model">Model
+                                <input type="text" class="form-control" name="model" id="model" placeholder="Model">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-3"></div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <div class="label-holder d-flex justify-content-center">
+                            <label class="text-center text-white font-weight-bold" for="year">Year
+                                <input type="number" class="form-control" placeholder="Year" name="year" id="year">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-3">
+                    <div class="form-group ">
+                        <div class="label-holder d-flex justify-content-center">
+                            <label class="text-center text-white font-weight-bold" for="engine">Engine
+                                <select id="engine" name="engine" class="form-control">
+                                    <option value="diesel">Diesel</option>
+                                    <option value="gasoline">Gasoline</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-4"></div>
+                <div class="col col-md-4">
+                    <div class="button-holder d-flex justify-content-center">
+                        <input type="submit" class="btn btn-secondary" value="Upload Car"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+></script>
+</body>
+</html>

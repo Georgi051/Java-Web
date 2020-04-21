@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="templates/base-layout.xhtml">
+    <ui:define name="main-content">
+        <main class="mt-3">
+            <h1 class="text-center">Receipt Details</h1>
+            <hr class="hr-2 bg-panda"/>
+            <div class="mx-auto">
+                <div class="receipt-id-handler d-flex justify-content-between">
+                    <h3>Receipt Number:</h3>
+                    <h3>#{receiptDetailsBean.receiptViewModel.id}</h3>
+                </div>
+                <hr class="hr-2 bg-panda"/>
+                <div class="d-flex justify-content-between">
+                    <h4>Issued On:</h4>
+                    <h4>#{receiptDetailsBean.receiptViewModel.issuedOn}</h4>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <h4>Delivery Address:</h4>
+                    <h4>#{receiptDetailsBean.receiptViewModel.aPackage.shippingAddress}</h4>
+                </div>
+                <hr class="hr-2 bg-panda"/>
+                <div class="d-flex justify-content-between">
+                    <h4>Package Weight (KG):</h4>
+                    <h4>#{receiptDetailsBean.receiptViewModel.aPackage.weight}</h4>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <h4>Package Description:</h4>
+                    <h4>#{receiptDetailsBean.receiptViewModel.aPackage.description}</h4>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <h4>Recipient:</h4>
+                    <h4>#{receiptDetailsBean.receiptViewModel.recipient}</h4>
+                </div>
+                <hr class="hr-2 bg-panda"/>
+                <div class="fee-holder d-flex justify-content-end">
+                    <h3>Total: #{receiptDetailsBean.receiptViewModel.fee}</h3>
+                </div>
+            </div>
+        </main>
+    </ui:define>
+</ui:composition>
+</html>

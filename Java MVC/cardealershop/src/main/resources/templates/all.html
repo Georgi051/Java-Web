@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+<main>
+    <th:block th:include="~{fragments/navbar}"/>
+    <div class="container">
+        <h2 class="text-center text-white mt-5">West Compass Offers</h2>
+        <hr style="width: 50%"/>
+        <div class='row mb-4 d-flex justify-content-around'>
+            <th:block th:each="car: ${cars}">
+                <div class="col-md-4 d-flex flex-column bg-text mb-3">
+                    <h2>Brand: <span th:text="${car.brand}"></span></h2>
+                    <h4>Model: <span th:text="${car.model}"></span></h4>
+                    <h4>Year: <span th:text="${car.year}"></span></h4>
+                    <h4>Engine: <span th:text="${car.engine}"></span></h4>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
+</body>
+</html>

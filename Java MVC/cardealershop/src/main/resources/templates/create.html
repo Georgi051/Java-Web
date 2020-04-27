@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+<main class="main">
+    <th:block th:include="~{fragments/navbar}"/>
+    <div class="container-fluid">
+        <h2 class="text-center text-white">Upload Car</h2>
+        <form class="mx-auto w-15" th:action="@{create}" th:method="post">
+            <div class="row">
+                <div class="col col-md-3"></div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <div class="label-holder d-flex justify-content-center">
+                            <label class="text-center text-white font-weight-bold" for="brand">Brand
+                                <input type="text" class="form-control" name="brand" id="brand" placeholder="Brand">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <div class="label-holder d-flex justify-content-center">
+                            <label class="text-center text-white font-weight-bold" for="model">Model
+                                <input type="text" class="form-control" name="model" id="model" placeholder="Model">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-3"></div>
+                <div class="col col-md-3">
+                    <div class="form-group">
+                        <div class="label-holder d-flex justify-content-center">
+                            <label class="text-center text-white font-weight-bold" for="year">Year
+                                <input type="number" class="form-control" placeholder="Year" name="year" id="year">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-3">
+                    <div class="form-group ">
+                        <div class="label-holder d-flex justify-content-center">
+                            <label class="text-center text-white font-weight-bold" for="engine">Engine
+                                <select id="engine" name="engine" class="form-control">
+                                    <option value="diesel">Diesel</option>
+                                    <option value="gasoline">Gasoline</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-4"></div>
+                <div class="col col-md-4">
+                    <div class="button-holder d-flex justify-content-center">
+                        <input type="submit" class="btn btn-secondary" value="Upload Car"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

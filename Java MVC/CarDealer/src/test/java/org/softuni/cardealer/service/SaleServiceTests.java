@@ -49,10 +49,10 @@ public class SaleServiceTests {
         modelMapper = new ModelMapper();
         saleService = new SaleServiceImpl(this.carSaleRepository, this.partSaleRepository, this.modelMapper);
 
-        car = new Car();
-        car.setMake("BMW");
-        car.setModel("3");
-        car.setTravelledDistance(2000L);
+        this.car = new Car();
+        this.car.setMake("BMW");
+        this.car.setModel("3");
+        this.car.setTravelledDistance(2000L);
         this.carRepository.saveAndFlush(this.car);
 
         this.customer = new Customer();

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<header>
+    <header>
+        <nav class="navbar bg-dark navbar-expand-lg navbar-background bg-dark ">
+            <a class="navbar-brand text-white h4">Heroes</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                <ul class="navbar-nav row">
+                    <li class="nav-item mr-2">
+                        <a class="nav-link text-white active h5" th:href="@{/heroes/create}">Create hero</a>
+                    </li>
+                    <li class="nav-item mr-2">
+                        <a class="nav-link text-white active h5" th:href="@{/logout}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</header>
+<main>
+    <div class="text-center mb-3">
+        <div th:if="${session.role == 'ADMIN'}">
+            <h4 class="text-white mt-2" th:text="'Welcome Administrotor, ' + ${#session.getValue('username')}"></h4>
+        </div>
+        <div th:if="${session.role == 'USER'}">
+            <h4 class="text-white mt-2" th:text="'Welcome to the arena, ' + ${#session.getValue('username')}"></h4>
+        </div>
+    </div>
+    <hr class="my-3"/>
+    <div class="container">
+        <div class="text-center">
+            <h2>User, you don't have a hero. Click below and create one.</h2>
+            <a th:href="@{/heroes/create}" class="btn btn-secondary">Create hero</a>
+        </div>
+        
+    </div>
+</main>
+    <footer class="footer bg-dark  py-2">
+        <div class="container-fluid text-center">
+            <div class="footer-background h5 text-white">
+                &#169; CopyRight Victorious Arena. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

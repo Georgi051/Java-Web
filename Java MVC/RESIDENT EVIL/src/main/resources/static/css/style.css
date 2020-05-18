@@ -1,0 +1,27 @@
+.re-background{
+    background-color: #900C45;
+    color: white;
+}
+
+.corona-pic{
+    background-image: url("../pic/coronavirus.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.add-virus-color{
+    background-image: url("../pic/add-viruses-pic.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.default {
+    border-color: #e7e7e7;
+    color: black;
+}
+
+.btn {
+    border-width: thin;
+}

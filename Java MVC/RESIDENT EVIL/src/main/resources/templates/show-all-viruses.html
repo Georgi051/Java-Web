@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<div>
+    <header>
+        <nav class="navbar navbar-expand-lg re-background">
+            <a class="navbar-brand text-white" th:href="@{/}">Resident Evil</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" th:href="@{/}" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Viruses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/viruses/show}">Show</a>
+                            <a class="dropdown-item" th:href="@{/viruses/add}">Add</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container mt-4">
+            <h1>All Viruses</h1>
+            <form th:action="@{/viruses/show}" th:method="post">
+                <table class="table mt-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Magnitude</th>
+                        <th scope="col">Released On</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <div th:each="virus : ${viruses}">
+                        <tr>
+                            <th scope="row" th:text="${virusStat.index + 1}"></th>
+                            <td th:text="*{virus.getName()}"></td>
+                            <td th:text="${virus.getMagnitude()}"></td>
+                            <td th:text="${#temporals.format(virus.getReleasedOn(),'dd-MMM-yyyy')}"></td>
+                            <td>
+                                <a class="btn default"
+                                   th:href="@{/viruses/edit/{id}(id=${virus.getId()})}">Edit</a>
+                            </td>
+                            <td>
+                                <form th:action="@{/viruses/delete/{id}(id=${virus.getId()})}" th:method="post">
+                                    <button class="btn default">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </div>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </main>
+</div>
+</html>

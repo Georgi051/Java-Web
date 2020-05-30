@@ -1,10 +1,10 @@
 package com.example.residentevil.repository;
 
-import com.example.residentevil.domain.entities.Virus;
+import com.example.residentevil.domain.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VirusRepository extends JpaRepository<Virus,String> {
-        Virus findByName(String name);
+public interface RoleRepository extends JpaRepository<Role,String> {
+    Role findByAuthority(String authority);
 }

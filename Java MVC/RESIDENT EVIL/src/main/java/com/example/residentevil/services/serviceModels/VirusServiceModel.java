@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class VirusServiceModel {
-    private Long id;
+    private String id;
     private String name;
     private String description;
     private String sideEffects;
@@ -20,16 +20,16 @@ public class VirusServiceModel {
     private Integer hoursUntilTurn;
     private Magnitude magnitude;
     private LocalDate releasedOn;
-    private List<Long> capitals;
+    private List<String> capitals;
 
     public VirusServiceModel() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -121,11 +121,11 @@ public class VirusServiceModel {
         this.releasedOn = releasedOn;
     }
 
-    public List<Long> getCapitals() {
+    public List<String> getCapitals() {
         return capitals;
     }
 
-    public void setCapitals(List<Long> capitals) {
+    public void setCapitals(List<String> capitals) {
         this.capitals = capitals;
     }
 }

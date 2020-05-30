@@ -31,7 +31,7 @@ public class CapitalServiceImpl implements CapitalService {
     }
 
     @Override
-    public List<Capitals> findCapitalsById(List<Long> capitalsId) {
+    public List<Capitals> findCapitalsById(List<String> capitalsId) {
         List<Capitals> capitalsFound = new ArrayList<>();
         capitalsId.
                 forEach(id -> capitalsFound.add(this.modelMapper.map(this.capitalsRepository.getById(id)

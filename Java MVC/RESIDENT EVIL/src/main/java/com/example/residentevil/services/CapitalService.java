@@ -8,5 +8,5 @@ package com.example.residentevil.services;
 public interface CapitalService {
     List<CapitalServiceModel> getAllCapitals();
 
-    List<Capitals> findCapitalsById(List<Long> capitalsId);
+    List<Capitals> findCapitalsById(List<String> capitalsId);
 }

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <head>
     <th:block th:include="~{fragments/head}"></th:block>
 </head>
 <div>
     <header>
         <nav class="navbar navbar-expand-lg re-background">
-            <a class="navbar-brand text-white" th:href="@{/}">Resident Evil</a>
+            <a class="navbar-brand text-white" th:href="@{/home}">Resident Evil</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -14,10 +15,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link text-white" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
-                    </li>
+                    <a class="nav-link text-white" th:href="@{/home}">Home</a>
+                </li>
+
+                    <th:block sec:authorize="hasAuthority('ADMIN')">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" th:href="@{/}" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle text-white" th:href="@{/home}" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Viruses
                         </a>
@@ -26,6 +29,7 @@
                             <a class="dropdown-item" th:href="@{/viruses/add}">Add</a>
                         </div>
                     </li>
+                    </th:block>
                 </ul>
             </div>
         </nav>
@@ -46,12 +50,14 @@
                     </tr>
                     </thead>
                     <tbody>
+                    
                     <div th:each="virus : ${viruses}">
                         <tr>
                             <th scope="row" th:text="${virusStat.index + 1}"></th>
                             <td th:text="*{virus.getName()}"></td>
                             <td th:text="${virus.getMagnitude()}"></td>
                             <td th:text="${#temporals.format(virus.getReleasedOn(),'dd-MMM-yyyy')}"></td>
+                            <th:block sec:authorize="hasAuthority('ADMIN')">
                             <td>
                                 <a class="btn default"
                                    th:href="@{/viruses/edit/{id}(id=${virus.getId()})}">Edit</a>
@@ -61,6 +67,7 @@
                                     <button class="btn default">Delete</button>
                                 </form>
                             </td>
+                            </th:block>
                         </tr>
                     </div>
                     </tbody>

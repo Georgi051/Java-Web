@@ -10,6 +10,7 @@ import com.example.residentevil.web.viewModels.CapitalsNameViewModel;
 import com.example.residentevil.web.viewModels.VirusesViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,7 @@ public class VirusController extends BaseController {
     }
 
     @GetMapping("/add")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView add(ModelAndView modelAndView, @ModelAttribute(name = "model") VirusBindingModel model) {
         modelAndView.addObject("model", model);
         modelAndView.addObject("capitals", this.capitalService.getAllCapitals().stream()
@@ -54,7 +56,7 @@ public class VirusController extends BaseController {
             modelAndView.addObject("model", model);
             return super.view("add-virus", modelAndView);
         }
-        return super.redirect("/");
+        return super.redirect("/home");
     }
 
     @GetMapping("/show")
@@ -68,6 +70,7 @@ public class VirusController extends BaseController {
 
 
     @GetMapping("/edit/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ModelAndView editVirus(@PathVariable(name = "id") String id, ModelAndView modelAndView) {
         VirusServiceWithCapitalsModel findVirus = this.virusService.findById(id);
         modelAndView.addObject("virus", findVirus);
@@ -96,7 +99,6 @@ public class VirusController extends BaseController {
     private void changeVirusDetails(VirusBindingModel model, String id) {
         this.virusService.changeVirusParams(this.modelMapper.map(model, VirusServiceModel.class), id);
     }
-
 
     @PostMapping("/delete/{id}")
     public ModelAndView deleteVirus(@PathVariable(name = "id") String virusId) {

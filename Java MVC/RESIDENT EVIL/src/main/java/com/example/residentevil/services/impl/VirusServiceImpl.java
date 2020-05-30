@@ -54,12 +54,12 @@ public class VirusServiceImpl implements VirusService {
 
     @Override
     public void removeVirusById(String id) {
-        this.virusRepository.deleteById(Long.parseLong(id));
+        this.virusRepository.deleteById(id);
     }
 
     @Override
     public VirusServiceWithCapitalsModel findById(String id) {
-        Virus virus = this.virusRepository.findById(Long.parseLong(id)).orElse(null);
+        Virus virus = this.virusRepository.findById(id).orElse(null);
         if (virus != null) {
             VirusServiceWithCapitalsModel v = this.modelMapper.map(virus, VirusServiceWithCapitalsModel.class);
             v.setCapitals(virus.getCapitals().stream().map(c -> this.modelMapper.map(c, CapitalServiceModel.class))
@@ -73,7 +73,7 @@ public class VirusServiceImpl implements VirusService {
     @Override
     public void changeVirusParams(VirusServiceModel virus, String id) {
         List<Capitals> capitals = findCapitalsById(virus.getCapitals());
-        Virus dataBaseVirus = this.virusRepository.findById(Long.parseLong(id)).orElse(null);
+        Virus dataBaseVirus = this.virusRepository.findById(id).orElse(null);
 
         assert dataBaseVirus != null;
         for (Capitals capital : dataBaseVirus.getCapitals()) {
@@ -87,7 +87,7 @@ public class VirusServiceImpl implements VirusService {
         this.virusRepository.saveAndFlush(virusSave);
     }
 
-    private List<Capitals> findCapitalsById(List<Long> id) {
+    private List<Capitals> findCapitalsById(List<String> id) {
         return this.capitalService.findCapitalsById(id);
     }
 }

@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface CapitalsRepository extends JpaRepository<Capitals,Long> {
+public interface CapitalsRepository extends JpaRepository<Capitals,String> {
     @Query("SELECT c from Capitals as c order by c.name")
     List<Capitals> findByNameOrderByNameAsc();
 
-    Capitals getById (Long id);
+    Capitals getById (String id);
 }

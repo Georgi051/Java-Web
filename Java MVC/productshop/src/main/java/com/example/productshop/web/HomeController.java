@@ -19,4 +19,5 @@ public class HomeController extends BaseController {
     public ModelAndView home(){
         return super.view("home");
     }
+
 }

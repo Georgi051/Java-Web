@@ -18,22 +18,20 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
         http
                 .csrf()
                 .csrfTokenRepository(csrfTokenRepository())
-                .and()
+             .and()
                 .authorizeRequests()
-                .antMatchers("/","/users/login","/users/register").anonymous()
-                .antMatchers("/css/**","/js/**").permitAll()
+                .antMatchers("/", "/users/login", "/users/register").anonymous()
+                .antMatchers("/css/**", "/js/**").permitAll()
                 .anyRequest().authenticated()
-                .and()
+             .and()
                 .formLogin()
                 .loginPage("/users/login").permitAll()
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/home")
-                .and()
+                .defaultSuccessUrl("/home",true)
+             .and()
                 .logout()
-                .logoutSuccessUrl("/").permitAll()
-                .and()
-                .exceptionHandling().accessDeniedPage("/unauthorized");
+                .logoutSuccessUrl("/").permitAll();
     }
 
     private CsrfTokenRepository csrfTokenRepository() {

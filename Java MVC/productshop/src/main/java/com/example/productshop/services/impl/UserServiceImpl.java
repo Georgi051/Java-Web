@@ -4,7 +4,6 @@ import com.example.productshop.domain.entities.User;
 import com.example.productshop.repository.UserRepository;
 import com.example.productshop.services.RoleService;
 import com.example.productshop.services.UserService;
-import com.example.productshop.services.serviceModels.RoleServiceModel;
 import com.example.productshop.services.serviceModels.UserServiceModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserServiceModel registerUser(UserServiceModel userServiceModel) {
+    public void registerUser(UserServiceModel userServiceModel) {
         this.roleService.seedRoleInDb();
         if (this.userRepository.count() == 0){
             userServiceModel.setAuthorities(this.roleService.findAllRoles());
@@ -44,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
         User user = this.modelMapper.map(userServiceModel,User.class);
         user.setPassword(this.bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
-        return this.modelMapper.map(this.userRepository.saveAndFlush(user),UserServiceModel.class);
+        this.modelMapper.map(this.userRepository.saveAndFlush(user), UserServiceModel.class);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserServiceModel editUserProfile(UserServiceModel userServiceModel, String oldPassword) {
+    public void editUserProfile(UserServiceModel userServiceModel, String oldPassword) {
         User user = this.userRepository.findUserByUsername(userServiceModel.getUsername())
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"));
         if (!this.bCryptPasswordEncoder.matches(oldPassword,user.getPassword())){
@@ -64,7 +63,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword("".equals(userServiceModel.getPassword()) ? user.getPassword() :
                 this.bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
         user.setEmail(userServiceModel.getEmail());
-        return this.modelMapper.map(this.userRepository.saveAndFlush(user),UserServiceModel.class);
+        this.modelMapper.map(this.userRepository.saveAndFlush(user), UserServiceModel.class);
     }
 
     @Override

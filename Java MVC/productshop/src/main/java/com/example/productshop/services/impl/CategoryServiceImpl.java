@@ -59,4 +59,5 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow(() -> new IllegalArgumentException(String.format("Category with ID %s not found", id)));
         this.categoryRepository.delete(category);
     }
+
 }

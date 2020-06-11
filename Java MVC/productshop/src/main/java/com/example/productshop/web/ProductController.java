@@ -8,7 +8,6 @@ import com.example.productshop.services.serviceModels.CategoryServiceModel;
 import com.example.productshop.services.serviceModels.ProductServiceModel;
 import com.example.productshop.web.models.AllProductViewModel;
 import com.example.productshop.web.models.ProductViewModel;
-import org.dom4j.rule.Mode;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,9 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
@@ -31,7 +30,8 @@ public class ProductController extends BaseController {
     private final ModelMapper modelMapper;
 
     @Autowired
-    public ProductController(ProductService productService, CategoryService categoryService, CloudinaryService cloudinaryService, ModelMapper modelMapper) {
+    public ProductController(ProductService productService, CategoryService categoryService,
+                             CloudinaryService cloudinaryService, ModelMapper modelMapper) {
         this.productService = productService;
         this.categoryService = categoryService;
         this.cloudinaryService = cloudinaryService;
@@ -111,5 +111,20 @@ public class ProductController extends BaseController {
         ProductBindingModel product = this.modelMapper.map(findProduct, ProductBindingModel.class);
         product.setCategories(findProduct.getCategories().stream().map(CategoryServiceModel::getName).collect(Collectors.toSet()));
         return  product;
+    }
+
+    @GetMapping("/fetch/{category}")
+    @ResponseBody
+    public List<AllProductViewModel> fetch(@PathVariable(name = "category") String category) {
+        if ("All".equals(category)) {
+           return this.productService.allProducts().stream()
+                   .map(p -> this.modelMapper.map(p,AllProductViewModel.class))
+                   .collect(Collectors.toList());
+        }
+
+        return this.productService.findAllByCategory(category)
+                .stream()
+                .map(product -> this.modelMapper.map(product, AllProductViewModel.class))
+                .collect(Collectors.toList());
     }
 }

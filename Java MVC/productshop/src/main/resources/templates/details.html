@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col col-md-12 text-center mt-5">
-                    <h1 th:text="'Name: ' + ${product.name}"></h1>
+                    <h2 th:text="'Name: ' + ${product.name}"></h2>
                 </div>
             </div>
             <div class="row">
@@ -30,6 +30,11 @@
                     <h4 th:text="'Price: ' + ${product.price}"></h4>
                 </div>
             </div>
+            <form th:action="@{/orders/product/{id}(id=${product.id})}" th:method="get">
+                <div class="button-holder d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Order Product</button>
+                </div>
+            </form>
         </div>
     </main>
 
@@ -37,4 +42,5 @@
         <th:block th:include="~{fragments/footer}"/>
     </footer>
 </div>
-</body></html>
+</body>
+</html>

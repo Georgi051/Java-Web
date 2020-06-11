@@ -5,6 +5,7 @@ import com.example.productshop.domain.entities.Product;
 import com.example.productshop.repository.ProductRepository;
 import com.example.productshop.services.CategoryService;
 import com.example.productshop.services.ProductService;
+import com.example.productshop.services.serviceModels.CategoryServiceModel;
 import com.example.productshop.services.serviceModels.ProductServiceModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,13 @@ public class ProductServiceImpl implements ProductService {
      Product product = this.productRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(String.format("Product with ID %s not found", id)));
         this.productRepository.delete(product);
+    }
+
+    @Override
+    public List<ProductServiceModel> findAllByCategory(String category) {
+        return this.productRepository.findAll().stream()
+                .filter(p -> p.getCategories().stream().anyMatch(c -> c.getName().equals(category)))
+                .map(p -> this.modelMapper.map(p,ProductServiceModel.class))
+                .collect(Collectors.toList());
     }
 }

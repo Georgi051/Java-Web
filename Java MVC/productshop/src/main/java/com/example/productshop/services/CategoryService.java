@@ -14,4 +14,5 @@ public interface CategoryService {
     void editCategory(String id, CategoryServiceModel model);
 
     void deleteCategory(String id);
+
 }

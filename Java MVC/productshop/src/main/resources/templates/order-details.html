@@ -1,0 +1,57 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body>
+<div class="container-fluid">
+
+    <header>
+        <th:block th:include="~{fragments/navbar}"/>
+    </header>
+
+    <main class="mt-3">
+        <div class="jumbotron bg-light">
+            <div class="text-center">
+                <img th:src="${order.productImageUrl}" width="200" height="200" alt="Product">
+            </div>
+            <div class="row">
+                <div class="col col-md-12 text-center mt-5">
+                    <h1 th:text="'Name: ' + ${order.name}"></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-12 text-center mt-3">
+                    <h4 th:text="'Desciption: ' + ${order.description}"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-12 text-center mt-3">
+                    <h4 th:text="'Customer: ' + ${order.customerUsername}"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-12 text-center">
+                    <h4 th:text="'Quantity: ' + ${order.quantity}"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-12 text-center">
+                    <h4 th:text="'Price: ' + ${order.price}"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-12 text-center">
+                    <h4 th:text="'Date: ' + ${#temporals.format(order.orderTime,'dd-MM-yyyy HH:mm')}"></h4>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-3">
+        <th:block th:include="~{fragments/footer}"/>
+    </footer>
+
+</div>
+
+</body></html>

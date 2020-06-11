@@ -1,0 +1,49 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"/>
+</head>
+<body>
+<div class="container-fluid">
+
+    <header>
+        <th:block th:include="~{fragments/navbar}"/>
+    </header>
+
+    <main class="mt-3">
+        <h1 class="text-center text-dark">My Orders</h1>
+        <hr class="hr-2 bg-dark w-75">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <div th:each="order : ${orders}">
+                <tr>
+                    <th th:text="${orderStat.index + 1}"></th>
+                    <td><img th:src="${order.productImageUrl}" width="40" height="40" alt="Product"></td>
+                    <td th:text="${order.customerUsername}"></td>
+                    <td th:text="${order.price}"></td>
+                    <td th:text="${#temporals.format(order.orderTime,'dd-MM-yyyy HH:mm')}"></td>
+                </tr>
+            </div>
+
+            </tbody>
+        </table>
+        <hr class="hr-2 bg-dark">
+    </main>
+
+    <footer class="mt-3">
+        <th:block th:include="~{fragments/footer}"/>
+    </footer>
+
+</div>
+</body>
+</html>
